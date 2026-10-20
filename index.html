@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All About the Dodo · dodo.mrgarbonzo.com</title>
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  :root{--sand:#f6efe3;--ink:#2b2a26;--leaf:#2f6b4f;--sea:#1f6f8b;--beak:#d9a441;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:var(--sand);line-height:1.6}
+  header{background:linear-gradient(160deg,var(--sea),var(--leaf));color:#fff;text-align:center;padding:70px 20px 90px;position:relative}
+  header h1{font-size:clamp(2.6rem,7vw,4.5rem);margin:0;letter-spacing:1px}
+  header p{font-size:1.2rem;opacity:.9;margin:.5rem 0 0}
+  .bird{font-size:5rem;display:block;margin-bottom:10px}
+  nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;background:#fff;padding:14px;position:sticky;top:0;box-shadow:0 2px 8px rgba(0,0,0,.08);z-index:5}
+  nav a{color:var(--leaf);text-decoration:none;font-weight:bold;font-family:Arial,sans-serif;font-size:.95rem}
+  nav a:hover{color:var(--sea)}
+  main{max-width:960px;margin:0 auto;padding:30px 20px 60px}
+  section{margin:50px 0}
+  h2{color:var(--leaf);font-size:2rem;border-bottom:3px solid var(--beak);display:inline-block;padding-bottom:4px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:20px}
+  .stat{background:#fff;border-radius:14px;padding:20px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  .stat b{display:block;font-size:1.7rem;color:var(--sea)}
+  .stat span{font-family:Arial,sans-serif;font-size:.9rem;color:#666}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:20px}
+  .fact{background:#fff;border-left:6px solid var(--beak);border-radius:10px;padding:18px 20px;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  .fact h3{margin:0 0 6px;color:var(--sea);font-size:1.15rem}
+  .timeline{border-left:4px solid var(--leaf);margin:24px 0 0 10px;padding-left:24px}
+  .event{margin-bottom:22px;position:relative}
+  .event::before{content:"";position:absolute;left:-34px;top:6px;width:16px;height:16px;background:var(--beak);border-radius:50%;border:3px solid var(--sand)}
+  .event strong{color:var(--sea);font-family:Arial,sans-serif}
+  .myth{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px}
+  .myth div{flex:1 1 280px;background:#fff;border-radius:12px;padding:18px}
+  .myth .m{border-top:5px solid #c0533a}.myth .t{border-top:5px solid var(--leaf)}
+  #quiz{background:#fff;border-radius:14px;padding:24px;box-shadow:0 3px 10px rgba(0,0,0,.06)}
+  #quiz button{font-family:Arial,sans-serif;margin:6px 6px 0 0;padding:10px 16px;border-radius:8px;border:2px solid var(--sea);background:#fff;color:var(--sea);cursor:pointer;font-size:1rem}
+  #quiz button:hover{background:var(--sea);color:#fff}
+  #result{margin-top:14px;font-weight:bold;min-height:1.5em}
+  footer{background:var(--ink);color:#ddd;text-align:center;padding:30px 20px;font-family:Arial,sans-serif;font-size:.9rem}
+  .duo{background:linear-gradient(160deg,var(--sea),var(--leaf));display:flex;justify-content:center;gap:clamp(10px,6vw,60px);padding:24px 16px 0;flex-wrap:wrap}
+  .duo svg{width:min(260px,44vw);height:auto;display:block}
+  .duo text{font-family:Arial,sans-serif;font-weight:bold}
+  header{padding-top:30px}
+</style>
+</head>
+<body>
+<style>body{font-family:Georgia,"Times New Roman",serif;font-size:16px}.topnav{font-family:Arial,sans-serif}</style>
+<div class="duo">
+<svg viewBox="0 0 220 300" role="img" aria-label="Tommy the dodo says Do?">
+  <g><rect x="52" y="4" width="116" height="48" rx="22" fill="#fff"/><path d="M100 50 L112 70 L120 50 Z" fill="#fff"/>
+  <text x="110" y="37" font-size="24" text-anchor="middle" fill="var(--sea)">Do?</text></g>
+  <ellipse cx="110" cy="285" rx="60" ry="8" fill="rgba(0,0,0,.15)"/>
+  <path d="M88 255 v22 m-10 0 h20 M132 255 v22 m-10 0 h20" stroke="var(--beak)" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="110" cy="205" rx="62" ry="58" fill="#8a8f9c"/>
+  <ellipse cx="110" cy="215" rx="38" ry="38" fill="#c9ccd4"/>
+  <path d="M165 200 q25 -10 22 22 q-12 -8 -22 -6 Z" fill="#f6efe3"/>
+  <ellipse cx="110" cy="112" rx="40" ry="42" fill="#8a8f9c"/>
+  <circle cx="96" cy="106" r="9" fill="#fff"/><circle cx="98" cy="108" r="5" fill="var(--ink)"/>
+  <circle cx="124" cy="106" r="9" fill="#fff"/><circle cx="126" cy="108" r="5" fill="var(--ink)"/>
+  <circle cx="86" cy="126" r="6" fill="#f2a1a1" opacity=".7"/><circle cx="134" cy="126" r="6" fill="#f2a1a1" opacity=".7"/>
+  <path d="M100 120 Q110 112 120 120 Q132 140 112 148 Q118 136 100 128 Z" fill="var(--beak)"/>
+  <path d="M78 70 Q110 38 142 70 Z" fill="#c0533a"/><path d="M138 68 Q160 66 168 74 L140 74 Z" fill="#a3402b"/><circle cx="110" cy="48" r="4" fill="#fff"/>
+  <rect x="72" y="198" width="76" height="30" rx="8" fill="#fff" stroke="var(--beak)" stroke-width="3"/>
+  <text x="110" y="219" font-size="18" text-anchor="middle" fill="var(--leaf)">Tommy</text>
+</svg>
+<svg viewBox="0 0 220 300" role="img" aria-label="Jack the dodo says Dodo">
+  <g><rect x="52" y="4" width="116" height="48" rx="22" fill="#fff"/><path d="M100 50 L112 70 L120 50 Z" fill="#fff"/>
+  <text x="110" y="37" font-size="24" text-anchor="middle" fill="var(--sea)">Dodo</text></g>
+  <ellipse cx="110" cy="285" rx="60" ry="8" fill="rgba(0,0,0,.15)"/>
+  <path d="M88 255 v22 m-10 0 h20 M132 255 v22 m-10 0 h20" stroke="var(--beak)" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="110" cy="205" rx="62" ry="58" fill="#8a8f9c"/>
+  <ellipse cx="110" cy="215" rx="38" ry="38" fill="#c9ccd4"/>
+  <path d="M165 200 q25 -10 22 22 q-12 -8 -22 -6 Z" fill="#f6efe3"/>
+  <ellipse cx="110" cy="112" rx="40" ry="42" fill="#8a8f9c"/>
+  <circle cx="96" cy="106" r="9" fill="#fff"/><circle cx="98" cy="108" r="5" fill="var(--ink)"/>
+  <circle cx="124" cy="106" r="9" fill="#fff"/><circle cx="126" cy="108" r="5" fill="var(--ink)"/>
+  <circle cx="86" cy="126" r="6" fill="#f2a1a1" opacity=".7"/><circle cx="134" cy="126" r="6" fill="#f2a1a1" opacity=".7"/>
+  <path d="M100 120 Q110 112 120 120 Q132 140 112 148 Q118 136 100 128 Z" fill="var(--beak)"/>
+  <path d="M92 150 L110 160 L92 170 Z M128 150 L110 160 L128 170 Z" fill="#c0533a"/><circle cx="110" cy="160" r="5" fill="#a3402b"/>
+  <rect x="72" y="198" width="76" height="30" rx="8" fill="#fff" stroke="var(--beak)" stroke-width="3"/>
+  <text x="110" y="219" font-size="18" text-anchor="middle" fill="var(--leaf)">Jack</text>
+</svg>
+</div>
+<header>
+  <span class="bird">🦤</span>
+  <h1>The Dodo</h1>
+  <p><em>Raphus cucullatus</em> · The flightless bird of Mauritius</p>
+</header>
+<nav>
+  <a href="#about">About</a><a href="#facts">Facts</a><a href="#timeline">Timeline</a><a href="#myths">Myths</a><a href="#quiz">Quiz</a>
+</nav>
+<main>
+  <section id="about">
+    <h2>Meet the Dodo</h2>
+    <p>The dodo was a large, flightless bird that lived only on the island of Mauritius in the Indian Ocean, east of Madagascar. With no natural predators on the island, it had no need to fly. Within a century of humans arriving, it was gone, and it became the world's most famous symbol of extinction.</p>
+    <div class="stats">
+      <div class="stat"><b>~1 m</b><span>Height (about 3.3 ft)</span></div>
+      <div class="stat"><b>10–18 kg</b><span>Estimated weight in the wild</span></div>
+      <div class="stat"><b>Mauritius</b><span>Its only home</span></div>
+      <div class="stat"><b>~1662</b><span>Last widely accepted sighting</span></div>
+    </div>
+  </section>
+
+  <section id="facts">
+    <h2>Fascinating Facts</h2>
+    <div class="facts">
+      <div class="fact"><h3>A giant pigeon</h3>Its closest living relative is the colorful Nicobar pigeon. The dodo's ancestors flew to Mauritius and gradually lost the ability to fly.</div>
+      <div class="fact"><h3>A cousin went extinct too</h3>The Rodrigues solitaire, a close relative from the nearby island of Rodrigues, also died out, by the late 1700s.</div>
+      <div class="fact"><h3>Stone swallowers</h3>Dodos swallowed stones (gastroliths) to help grind tough food like fruits, nuts and seeds in their gizzards.</div>
+      <div class="fact"><h3>A hooked beak</h3>Its large, hooked beak was up to about 23 cm (9 in) long and was its most recognizable feature.</div>
+      <div class="fact"><h3>Mystery name</h3>The name may come from the Dutch "dodoor" (sluggard) or "dodaars," or from the Portuguese "doudo," meaning fool.</div>
+      <div class="fact"><h3>Ground nester</h3>Dodos are thought to have laid a single egg in a nest on the ground, making it easy prey for animals humans brought along.</div>
+      <div class="fact"><h3>Alice in Wonderland</h3>Lewis Carroll put a Dodo in <em>Alice's Adventures in Wonderland</em> (1865), possibly a nod to his own stammer, "Do-do-Dodgson."</div>
+      <div class="fact"><h3>Rare remains</h3>The only soft tissue left from a dodo is a head and foot at Oxford University Museum of Natural History. Most skeletons come from the Mare aux Songes swamp in Mauritius.</div>
+      <div class="fact"><h3>National symbol</h3>The dodo appears on the coat of arms of Mauritius and is the country's national symbol.</div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <h2>Timeline</h2>
+    <div class="timeline">
+      <div class="event"><strong>Before 1598</strong><br>Dodos live undisturbed on Mauritius, with no land mammals hunting them.</div>
+      <div class="event"><strong>1598</strong><br>Dutch sailors land on Mauritius and record the dodo for the first time.</div>
+      <div class="event"><strong>1600s</strong><br>Hunting, plus rats, pigs, monkeys and other animals brought by ships, devastate dodos and their eggs. Forests are cleared.</div>
+      <div class="event"><strong>1662</strong><br>The last widely accepted sighting of a dodo, on an islet off Mauritius.</div>
+      <div class="event"><strong>~1690</strong><br>Some researchers estimate the true extinction happened around this time.</div>
+      <div class="event"><strong>1865</strong><br>Bones are excavated from Mare aux Songes, sparking new scientific interest.</div>
+      <div class="event"><strong>Today</strong><br>Scientists keep studying dodo DNA and bones, and some companies are even exploring "de-extinction."</div>
+    </div>
+  </section>
+
+  <section id="myths">
+    <h2>Myth vs. Truth</h2>
+    <div class="myth">
+      <div class="m"><h3>Myth: Dodos were fat and clumsy</h3>Old paintings often showed overfed captive birds or were guesswork. </div>
+      <div class="t"><h3>Truth: They were likely leaner and quicker</h3>Studies of bones suggest wild dodos were slimmer and reasonably agile, well suited to their forest home.</div>
+    </div>
+    <div class="myth">
+      <div class="m"><h3>Myth: Dodos were stupid</h3>"Dumb as a dodo" stuck because they didn't run from people.</div>
+      <div class="t"><h3>Truth: They simply had no reason to fear</h3>Having evolved without predators, they were naive, not dim. A 2016 brain study suggests their intelligence was similar to pigeons'.</div>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2>Quick Quiz</h2>
+    <p>Which bird is the dodo's closest living relative?</p>
+    <button onclick="answer(false)">Ostrich</button>
+    <button onclick="answer(true)">Nicobar pigeon</button>
+    <button onclick="answer(false)">Turkey</button>
+    <button onclick="answer(false)">Penguin</button>
+    <div id="result"></div>
+  </section>
+</main>
+<footer>
+  🦤 dodo.mrgarbonzo.com, a little tribute to a bird gone too soon.<br>
+  "Dead as a dodo," but never forgotten. · <a href="credits.html" style="color:#ffd98a">Picture credits</a>
+</footer>
+<script>
+function answer(ok){
+  document.getElementById('result').textContent = ok
+    ? '✅ Correct! The Nicobar pigeon is its closest living relative.'
+    : '❌ Not quite. Hint: the dodo was a kind of pigeon!';
+}
+</script>
+<script src="assets/common.js"></script>
+</body>
+</html>

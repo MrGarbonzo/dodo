@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="assets/site.css"><title>Should the Dodo Eat This?</title><style>
+#pic{width:min(320px,80vw);height:min(320px,80vw);object-fit:contain;border-radius:18px;background:#fff8e8;display:block;margin:10px auto}
+#q{font-size:1.5rem;text-align:center;font-weight:bold;margin:6px}#fb{font-size:1.25rem;text-align:center;min-height:3.2em;padding:8px}
+.right{color:#2f8a3a}.wrong{color:var(--red)}</style></head><body><main><h1>🍎 Should the Dodo Eat This?</h1>
+<div class="card center"><div class="score">⭐ <span id="sc">0</span> right out of <span id="tot">0</span> · Streak 🔥 <span id="st">0</span></div>
+<img id="pic" alt=""><div id="q"></div>
+<div id="btns"><button class="big yes" id="y">👍 Yes</button><button class="big no" id="n">👎 No</button></div>
+<div id="fb"></div><button class="big" id="next" style="display:none">Next ➜</button>
+<p id="donewrap"><button class="big" id="done" style="font-size:1rem;padding:10px 16px;background:#888">I'm done! Start over</button></p></div>
+<div id="lb"></div></main><footer>🦤 dodo.mrgarbonzo.com · <a href="credits.html">Picture credits</a></footer>
+<script src="assets/config.js"></script><script src="assets/common.js"></script><script src="assets/items.js"></script><script>
+let deck=[],cur,score=0,tot=0,streak=0;const $=id=>document.getElementById(id);
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function next(){if(!deck.length)deck=shuffle([...FOOD_ITEMS]);cur=deck.pop();$('pic').src=cur.img;$('pic').alt=cur.name;
+ $('q').textContent='Should the dodo eat '+cur.name+'?';$('fb').textContent='';$('next').style.display='none';$('btns').style.display='block'}
+function answer(yes){tot++;const ok=yes===cur.eat;if(ok){score++;streak++}else streak=0;
+ $('fb').innerHTML='<b class="'+(ok?'right':'wrong')+'">'+(ok?'✅ Right!':'❌ Oops!')+'</b> '+cur.fact;
+ $('sc').textContent=score;$('tot').textContent=tot;$('st').textContent=streak;$('btns').style.display='none';$('next').style.display='inline-block'}
+$('y').onclick=()=>answer(true);$('n').onclick=()=>answer(false);$('next').onclick=next;
+function finish(){$('fb').textContent='Great job! You got '+score+' right. Starting over!';score=tot=streak=0;['sc','tot','st'].forEach(i=>$(i).textContent=0);setTimeout(next,1800)}
+const lb=Leaderboard($('lb'),'eat',{saveLabel:"I'm done! Save my score",onShow:v=>$('donewrap').style.display=v?'none':'block',onSave:async()=>{if(await lb.submit(score))finish()}});
+$('done').onclick=finish;
+next();
+</script></body></html>

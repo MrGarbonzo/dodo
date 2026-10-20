@@ -1,0 +1,26 @@
+:root{--sand:#f6efe3;--ink:#2b2a26;--leaf:#2f6b4f;--sea:#1f6f8b;--beak:#d9a441;--red:#c0533a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--sand);line-height:1.5;font-size:18px}
+.topnav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;background:var(--leaf);padding:10px}
+.topnav a{color:#fff;text-decoration:none;font-weight:bold;font-size:1.1rem;padding:10px 18px;border-radius:30px;background:rgba(255,255,255,.12)}
+.topnav a.on,.topnav a:hover{background:var(--beak);color:var(--ink)}
+main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+main h1{color:var(--leaf);text-align:center;font-size:clamp(1.8rem,6vw,2.6rem);margin:.4em 0}
+.card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 3px 10px rgba(0,0,0,.08);margin:16px 0}
+.big{font-size:1.4rem;font-weight:bold;padding:16px 30px;border-radius:16px;border:none;cursor:pointer;color:#fff;background:var(--sea);min-width:140px;margin:6px}
+.big.yes{background:#3a9a4a}.big.no{background:var(--red)}.big:disabled{opacity:.5;cursor:default}
+.big:active{transform:scale(.96)}
+.center{text-align:center}
+.score{font-size:1.3rem;font-weight:bold;text-align:center}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.games a{display:block;text-decoration:none;color:var(--ink);background:#fff;border-radius:18px;padding:24px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.08);border:4px solid var(--beak)}
+.games a span{font-size:4rem;display:block}.games a b{font-size:1.4rem;color:var(--sea)}
+.board{display:none}.board ol{font-size:1.1rem;padding-left:1.6em}
+.board select{font-size:1.1rem;padding:8px;border-radius:8px}
+footer{background:var(--ink);color:#ddd;text-align:center;padding:24px;font-size:.9rem}
+footer a{color:#ffd98a}
+.namerow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.namerow input{flex:1 1 9em;min-width:8em;font-size:1.25rem;padding:10px;border-radius:12px;border:3px solid var(--sea)}
+.namerow .big{margin:0;min-width:0;font-size:1.1rem;padding:12px 16px;flex:0 1 auto}
+.namerow .save{background:#3a9a4a}
+@media(max-width:480px){.namerow input{flex-basis:100%}.namerow .big{flex:1 1 40%}}

@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="assets/site.css"><title>Dodo Facts</title><style>
+#today p,#cur p{font-size:1.45rem;margin:.4em 0}.tag{display:inline-block;background:var(--beak);border-radius:20px;padding:2px 12px;font-size:.9rem;font-weight:bold}
+.src{font-size:.85rem;color:#777}.src a{color:var(--sea)}#cats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
+#cats button{font-size:1.05rem;padding:10px 16px;border-radius:24px;border:3px solid var(--sea);background:#fff;color:var(--sea);cursor:pointer;font-weight:bold}
+#cats button.on{background:var(--sea);color:#fff}#count{text-align:center;color:#666}</style></head><body><main><h1>🦤 Dodo Facts</h1>
+<div id="today" class="card"></div>
+<h2 class="center" style="color:var(--leaf)">More facts!</h2><div id="cats"></div>
+<div id="cur" class="card"></div><div class="center"><button class="big" id="next">Next fact ➜</button></div><p id="count"></p></main>
+<footer>🦤 dodo.mrgarbonzo.com · <a href="credits.html">Picture credits</a></footer>
+<script src="assets/config.js"></script><script src="assets/common.js"></script><script>
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const NAMES={body:"🪶 Body",science:"🔬 Science",family:"🕊️ Family",food:"🍎 Food",babies:"🥚 Babies",Mauritius:"🏝️ Mauritius",history:"📜 History",extinction:"⏳ Extinction",museums:"🏛️ Museums",myths:"❓ Myths",stories:"📖 Stories"};
+const card=f=>`<span class="tag">${NAMES[f.category]||esc(f.category)}</span><p>${esc(f.fact)}</p><div class="src">Fact #${f.id} · <a href="${esc(f.source)}" target="_blank" rel="noopener">Where we learned this</a></div>`;
+let ALL=[],cat='all',queue=[],seen=0;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pool(){return ALL.filter(f=>cat==='all'||f.category===cat)}
+function reset(){queue=shuffle(pool());seen=0;next()}
+function next(){const total=pool().length;if(!queue.length){queue=shuffle(pool());seen=0;$('count').textContent='You read them all! Starting over 🎉'}
+ const f=queue.pop();seen++;$('cur').innerHTML=card(f);if(seen>1||total)$('count').textContent=`Fact ${seen} of ${total}`}
+fetch('facts.json').then(r=>r.json()).then(d=>{ALL=d;
+ const now=new Date(),key=now.getFullYear()*10000+(now.getMonth()+1)*100+now.getDate();let h=key;h=((h*2654435761)>>>0);
+ $('today').innerHTML='<h2>⭐ Fact of the Day</h2>'+card(ALL[h%ALL.length]);
+ const cats=['all',...new Set(ALL.map(f=>f.category))];
+ $('cats').innerHTML=cats.map(c=>`<button data-c="${c}" class="${c==='all'?'on':''}">${c==='all'?'🌈 All':NAMES[c]||c}</button>`).join('');
+ $('cats').onclick=e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.c;[...$('cats').children].forEach(x=>x.classList.toggle('on',x===b));reset()};
+ $('next').onclick=next;reset()
+}).catch(()=>{$('today').innerHTML='<p>Oops, the facts did not load. Try again!</p>'});
+</script></body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="assets/site.css"><title>Dodo Road</title><style>
+#scene{position:relative;width:100%;max-width:600px;aspect-ratio:3/4;margin:0 auto;border-radius:18px;overflow:hidden;background:linear-gradient(#9fd8f0 0 30%,#7cc06a 30%)}
+.road{position:absolute;top:30%;bottom:22%;width:22%;background:#c9a46a;border-radius:10px 10px 0 0;transition:background .3s}
+.road:nth-child(1){left:6%;transform:skewX(12deg)}.road:nth-child(2){left:39%}.road:nth-child(3){left:72%;transform:skewX(-12deg)}
+.road .end{position:absolute;top:-2px;left:0;right:0;height:22%;font-size:2.2rem;text-align:center}
+.road.cliff{background:linear-gradient(#3a3a5a 0 25%,#c9a46a 25%)}
+#base{position:absolute;left:0;right:0;bottom:0;height:22%;background:#c9a46a}
+#dodo{position:absolute;width:22%;left:39%;bottom:4%;transition:left .7s,bottom .7s,transform .7s,opacity .7s}
+#dodo.walk svg{animation:bob .25s infinite alternate}@keyframes bob{to{transform:translateY(-6%)}}
+#dodo.fall{animation:fall 1.4s forwards}@keyframes fall{0%{transform:rotate(0)}30%{transform:translateY(-15%) rotate(40deg)}100%{transform:translateY(160%) rotate(720deg) scale(.4);opacity:0}}
+#msg{position:absolute;top:6%;left:0;right:0;text-align:center;font-size:1.5rem;font-weight:bold;color:var(--ink)}
+.feather{position:absolute;font-size:1.6rem;animation:float 1.8s forwards}@keyframes float{to{transform:translate(var(--dx),120px) rotate(200deg);opacity:0}}
+#pick button{min-width:0;width:28%;font-size:1.6rem}</style></head><body><main><h1>🛤️ Dodo Road</h1>
+<div class="score">Roads crossed: <span id="sc">0</span> · Best: <span id="best">0</span></div>
+<div id="scene"><div class="road"><div class="end"></div></div><div class="road"><div class="end"></div></div><div class="road"><div class="end"></div></div><div id="base"></div>
+<div id="dodo"><svg viewBox="0 0 220 260"><ellipse cx="110" cy="250" rx="55" ry="8" fill="rgba(0,0,0,.2)"/><path d="M88 215 v30 m-10 0 h20 M132 215 v30 m-10 0 h20" stroke="#d9a441" stroke-width="8" stroke-linecap="round"/><ellipse cx="110" cy="170" rx="62" ry="55" fill="#8a8f9c"/><ellipse cx="110" cy="180" rx="36" ry="34" fill="#c9ccd4"/><path d="M165 165 q25 -10 22 22 q-12 -8 -22 -6 Z" fill="#f6efe3"/><ellipse cx="110" cy="80" rx="40" ry="42" fill="#8a8f9c"/><circle cx="96" cy="74" r="9" fill="#fff"/><circle cx="98" cy="76" r="5" fill="#2b2a26"/><circle cx="124" cy="74" r="9" fill="#fff"/><circle cx="126" cy="76" r="5" fill="#2b2a26"/><path d="M100 88 Q110 80 120 88 Q132 108 112 116 Q118 104 100 96 Z" fill="#d9a441"/></svg></div>
+<div id="msg">Pick a road!</div></div>
+<div id="pick" class="center"><button class="big" data-r="0">⬅️ 1</button><button class="big" data-r="1">⬆️ 2</button><button class="big" data-r="2">➡️ 3</button></div>
+<div class="center"><button class="big yes" id="again" style="display:none">🔁 Play again</button></div>
+<div id="lb"></div></main><footer>🦤 dodo.mrgarbonzo.com · <a href="credits.html">Picture credits</a></footer>
+<script src="assets/config.js"></script><script src="assets/common.js"></script><script>
+const $=id=>document.getElementById(id),dodo=$('dodo'),roads=[...document.querySelectorAll('.road')],btns=[...document.querySelectorAll('#pick button')];
+const SAFE=["🌳","🍎","🌴","🥥","🌼","🍌"],CHEER=["Phew! Safe!","Yay! Keep going!","Nice pick!","Lucky dodo!","Wow, so brave!"];
+let score=0,best=+localStorage.getItem('dodoRoadBest')||0,busy=false,cliff;$('best').textContent=best;
+let lastScore=0;const lb=Leaderboard($('lb'),'road',{onSave:async()=>{if(await lb.submit(lastScore))lb.setSaveEnabled(false)}});lb.setSaveEnabled(false);
+const LEFT=['6%','39%','72%'];
+function newRound(){cliff=Math.floor(Math.random()*3);roads.forEach(r=>{r.classList.remove('cliff');r.querySelector('.end').textContent='❓'});
+ dodo.className='';dodo.style.transition='none';dodo.style.left='39%';dodo.style.bottom='4%';dodo.style.transform='';dodo.style.opacity=1;void dodo.offsetWidth;dodo.style.transition='';busy=false;btns.forEach(b=>b.disabled=false)}
+function feathers(){for(let i=0;i<6;i++){const f=document.createElement('div');f.className='feather';f.textContent='🪶';f.style.left=(30+Math.random()*40)+'%';f.style.top='40%';f.style.setProperty('--dx',(Math.random()*160-80)+'px');$('scene').append(f);setTimeout(()=>f.remove(),1900)}}
+function go(r){if(busy)return;busy=true;btns.forEach(b=>b.disabled=true);
+ roads.forEach((rd,i)=>{rd.querySelector('.end').textContent=i===cliff?'⚠️':SAFE[Math.floor(Math.random()*SAFE.length)];if(i===cliff)rd.classList.add('cliff')});
+ dodo.classList.add('walk');dodo.style.left=LEFT[r];dodo.style.bottom='58%';dodo.style.transform='scale(.7)';
+ setTimeout(()=>{dodo.classList.remove('walk');
+  if(r===cliff){$('msg').textContent='Oh no! A cliff! Wheeee!';dodo.classList.add('fall');feathers();
+   setTimeout(()=>{$('msg').textContent='You crossed '+score+' road'+(score===1?'':'s')+'!'+(score>best?' 🎉 New best!':'');
+    if(score>best){best=score;localStorage.setItem('dodoRoadBest',best);$('best').textContent=best}lastScore=score;lb.setSaveEnabled(score>0);$('lb').scrollIntoView({behavior:'smooth',block:'center'});$('again').style.display='inline-block';$('pick').style.display='none'},1500)}
+  else{score++;$('sc').textContent=score;$('msg').textContent=CHEER[Math.floor(Math.random()*CHEER.length)];setTimeout(newRound,900)}},800)}
+btns.forEach(b=>b.onclick=()=>go(+b.dataset.r));
+$('again').onclick=()=>{score=0;lastScore=0;lb.setSaveEnabled(false);$('sc').textContent=0;$('msg').textContent='Pick a road!';$('again').style.display='none';$('pick').style.display='block';newRound()};
+newRound();
+</script></body></html>
